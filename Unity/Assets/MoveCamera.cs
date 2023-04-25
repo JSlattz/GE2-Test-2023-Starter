@@ -28,7 +28,7 @@ public class MoveCamera : MonoBehaviour
         if(cameraTriggered == true)
         {
             mainCamera.transform.position = cameraTargetPosition;
-            transform.LookAt(boidRotation); 
+            
         }
 
         if(Input.GetKeyDown(KeyCode.Z))
@@ -45,6 +45,7 @@ public class MoveCamera : MonoBehaviour
         //if(other.tag == "CT")
         {
             cameraTriggered = true;
+            transform.LookAt(boidRotation);
             boid.GetComponent<Boid>().enabled = false;
             boid.GetComponent<BoidFPSController>().enabled = true;
             mainCamera.GetComponent<FPSController>().enabled = false;
