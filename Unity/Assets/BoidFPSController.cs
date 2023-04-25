@@ -6,6 +6,7 @@ using System.Text;
 public class BoidFPSController : MonoBehaviour
 {
     public GameObject boid;
+    public Quaternion boidRotation;
     public float speed = 50.0f;
     public float lookSpeed = 150.0f;
 
@@ -56,12 +57,34 @@ public class BoidFPSController : MonoBehaviour
     void Fly(float units)
     {
         transform.position += Vector3.up * units;
+        boidRotation = Quaternion.Euler(15, 0, 0);
+        boid.transform.rotation = boidRotation;
     }
 
     void Strafe(float units)
     {
+        float bRY; float bRZ;
         transform.position += boid.transform.right * units;
+        bRY = units * 1000; bRZ = units * 1000;
+        if(bRY >= 10)
+        {
+            bRY = 10;
+        }
+        if(bRY <= -10)
+        {
+            bRY = -10;
+        }
 
+        if (bRZ >= 10)
+        {
+            bRZ = 10;
+        }
+        if (bRZ <= -10)
+        {
+            bRZ = -10;
+        }
+        boidRotation = Quaternion.Euler(0, bRY * -1, bRZ * -1);
+        boid.transform.rotation = boidRotation;
     }
 
     // Update is called once per frame
