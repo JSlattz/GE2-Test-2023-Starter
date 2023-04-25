@@ -6,6 +6,7 @@ public class MoveCamera : MonoBehaviour
 {
     public GameObject mainCamera;
     public GameObject cameraTarget;
+    public GameObject boid;
     public Vector3 cameraTargetPosition;
     public Transform boidRotation;
 
@@ -29,6 +30,14 @@ public class MoveCamera : MonoBehaviour
             mainCamera.transform.position = cameraTargetPosition;
             transform.LookAt(boidRotation); 
         }
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            cameraTriggered = false;
+            boid.GetComponent<Boid>().enabled = true;
+            boid.GetComponent<BoidFPSController>().enabled = false;
+            mainCamera.GetComponent<FPSController>().enabled = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +45,9 @@ public class MoveCamera : MonoBehaviour
         //if(other.tag == "CT")
         {
             cameraTriggered = true;
+            boid.GetComponent<Boid>().enabled = false;
+            boid.GetComponent<BoidFPSController>().enabled = true;
+            mainCamera.GetComponent<FPSController>().enabled = false;
             Debug.Log("Camera Triggered");
         }
         
