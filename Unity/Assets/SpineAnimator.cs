@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpineAnimator : MonoBehaviour {
     public GameObject[] bones;
+    public GameObject boid;
 
     public float bondDamping = 25;
     public float angularBondDamping = 25;
@@ -55,6 +56,8 @@ public class SpineAnimator : MonoBehaviour {
             bone.transform.rotation = Quaternion.Slerp(bone.transform.rotation
                 , wantedRotation
                 , Time.deltaTime * angularBondDamping);
+
+            bone.transform.rotation = Quaternion.Slerp(bone.transform.rotation, boid.GetComponent<BoidFPSController>().boidRotation, Time.deltaTime * angularBondDamping);
 
         }
     }

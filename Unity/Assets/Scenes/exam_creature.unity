@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boid: {fileID: 1039729033}
+  boidRotation: {x: 0, y: 0, z: 0, w: 0}
   speed: 3
   lookSpeed: 150
   allowPitch: 1

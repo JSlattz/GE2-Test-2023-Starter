@@ -21,8 +21,8 @@ public class BoidFPSController : MonoBehaviour
 
     void Yaw(float angle)
     {
-        Quaternion rot = Quaternion.AngleAxis(angle, Vector3.up);
-        transform.rotation = rot * transform.rotation;
+        boidRotation = Quaternion.AngleAxis(angle, Vector3.up);
+        transform.rotation = boidRotation * transform.rotation;
     }
 
     void Roll(float angle)
@@ -57,7 +57,7 @@ public class BoidFPSController : MonoBehaviour
     void Fly(float units)
     {
         transform.position += Vector3.up * units;
-        boidRotation = Quaternion.Euler(15, 0, 0);
+        boidRotation = Quaternion.Euler(10, 0, 0);
         boid.transform.rotation = boidRotation;
     }
 
